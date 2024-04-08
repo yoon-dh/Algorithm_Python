@@ -1,20 +1,10 @@
-ax1, ay1, ax2, ay2 = map(int, input().split())
-bx1, by1, bx2, by2 = map(int, input().split())
+import sys
+input = sys.stdin.readline
 
-if ax1 > bx1:
-    ax1, bx1 = bx1, ax1
-    ay1, by1 = by1, ay1
-    ax2, bx2 = bx2, ax2
-    ay2, by2 = by2, ay2
+a=list(map(int,input().split()))
+b=list(map(int,input().split()))
 
-if ax2 == bx1:
-    if ay2 == by1 or ay1 == by2: print("POINT");
-    elif ay1 <= by1 <= ay2 or ay1 <= by2 <= ay2 or by1 <= ay1 <= by2: print("LINE")
-    exit();
-elif ax2 > bx1:
-    if by2 < ay1 or ay2 < by1: print("NULL")
-    elif by2 == ay1 or ay2 == by1: print( "LINE")
-    else: print("FACE")
-    exit();
-
-print("NULL")
+if a[2]<b[0] or a[0]>b[2] or a[1]>b[3] or a[3]<b[1]: print('NULL')
+elif (a[2]==b[0] and a[3]==b[1]) or (a[0]==b[2] and a[1]==b[3]) or (a[2]==b[0] and a[1]==b[3]) or (a[0]==b[2] and a[3]==b[1]): print('POINT')
+elif a[2]==b[0] or a[0]==b[2] or a[1]==b[3] or a[3]==b[1]: print('LINE')
+else: print("FACE")
